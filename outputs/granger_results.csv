@@ -1,0 +1,13 @@
+sector,min_p,best_lag_months,significant
+Tobacco,8.781731592556653e-05,3,True
+Textiles/Clothing,0.029873882019335784,1,True
+Furniture/Household,0.05382405375725384,4,False
+Medical Care,0.06345509816523351,5,False
+Housing/Utilities,0.08315991360903732,6,False
+Restaurants/Hotels,0.18525319233788495,1,False
+Transportation,0.19166537028220987,6,False
+Recreation/Culture,0.22983519835447683,5,False
+Communications,0.3057101669237137,1,False
+Miscellaneous,0.41580347905049575,2,False
+Education,0.4160489546133642,1,False
+Food & Beverages,0.8130801741398308,1,False
