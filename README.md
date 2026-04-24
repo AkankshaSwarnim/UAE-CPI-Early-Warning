@@ -1,57 +1,3 @@
-# UAE Inflation Early-Warning System
-
-**A Ridge-regression forecaster built on 13 sector signals that anticipates headline UAE CPI 3 months ahead with 90% directional accuracy and RMSE 1.16 pp — beating a seasonal baseline by 2.7× on error.**
-
-![Headline CPI](figures/01_headline_cpi.png)
-
----
-
-## TL;DR
-
-UAE inflation has travelled from **+5.0% to −2.7% to +7.9%** in a decade — four distinct macro regimes in twelve years. Headline CPI reports lag reality by a month; by then, pricing, procurement, and policy decisions have already been made on stale information.
-
-This project turns the 13-division CPI basket into a forward-looking signal.
-
-| What | Result |
-|---|---|
-| **Forecast accuracy (3-month horizon)** | RMSE **1.16 pp** · directional accuracy **90%** · R² **0.75** |
-| **Benchmark** | Naive seasonal baseline: RMSE 3.15 pp, R² −0.74 |
-| **Leading sectors (Granger p < 0.05)** | Tobacco (3-month lead) · Textiles (1-month lead) |
-| **Unsupervised regime detection** | HDBSCAN surfaces 9 micro-regimes within 4 macro eras — independently rediscovering the 2018 VAT shock, 2020 COVID deflation, 2022 oil spike, and current 2024–2025 regime |
-| **Backtest rigor** | Expanding-window walk-forward, 71 out-of-sample origins, no look-ahead bias |
-
----
-
-## Why it matters to a business or policy audience
-
-Inflation at the headline level is a lagging indicator. A central bank or a CPG multinational that wants to front-run pricing decisions has three questions:
-1. **What regime are we in right now?** — unsupervised clustering answers this without analyst bias.
-2. **Which sectors give early signals?** — Granger tests isolate Tobacco and Textiles as statistically significant leads.
-3. **Where is headline going next?** — the Ridge forecaster translates the full sector panel into a 3–6 month outlook.
-
-At the 3-month horizon, the model gets the direction right 9 times out of 10. That's the difference between repricing a portfolio *before* the move and *after*.
-
----
-
-## Project structure
-
-```
-UAE-CPI-Analysis/
-├── data/                           # FCSA raw CPI files (monthly, quarterly, annual)
-├── src/
-│   ├── data_loader.py              # Chains 2014/2021 base indices, validates to ±0.01pp
-│   ├── analysis.py                 # STL, CUSUM, Granger, HDBSCAN, UMAP, contributions
-│   ├── forecast.py                 # Ridge/XGBoost/naive + walk-forward backtest
-│   └── plots.py                    # Consulting-style figure library
-├── notebooks/
-│   └── UAE_CPI_Early_Warning.ipynb # End-to-end narrative, all charts embedded
-├── figures/                        # Auto-generated PNGs (180 dpi, presentation-ready)
-├── outputs/                        # Backtest results, regime labels, contributions (CSV)
-├── generate_figures.py             # One-shot pipeline: data → analysis → all figures
-├── requirements.txt
-└── README.md
-```
-
 ## The forecast, visualised
 
 ### The model tracks the 2022 spike 3 months ahead
@@ -129,7 +75,7 @@ The dominant priors in UAE inflation commentary say "Housing leads inflation bec
 
 Reproduce: `python src/housing_deep_dive.py` from the repo root.
 
-
+## Methods
 
 | Layer | Technique | Purpose |
 |---|---|---|
@@ -149,8 +95,8 @@ Reproduce: `python src/housing_deep_dive.py` from the repo root.
 ## How to reproduce
 
 ```bash
-git clone https://github.com/AkankshaSwarnim/UAE-CPI-Analysis.git
-cd UAE-CPI-Analysis
+git clone https://github.com/AkankshaSwarnim/UAE-CPI-Early-Warning.git
+cd UAE-CPI-Early-Warning
 
 python -m venv venv
 source venv/bin/activate    # Windows: venv\Scripts\activate
